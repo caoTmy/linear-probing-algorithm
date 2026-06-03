@@ -2,16 +2,16 @@ package edu.hm.cs.bka.algo.hashes;
 
 import java.util.Arrays;
 
-/// Implementierung eines [SimpleSet] für Strings auf Basis einer Hashtable.
+/// Implementation of a [SimpleSet] for Strings based on a hashtable.
 public final class StringHashSet implements SimpleSet<String> {
 
-    // Dies ist die eigentliche Hashtable!
+    // the actual hashtable
     private String[] table = new String[5];
 
-    // Zähler für die tatsächlich enthaltenen Elemente
+    // counter for the actual existing elements
     private int size = 0;
 
-    // Marker-Eintrag für gelöschte Einträge, Vergleich mit == zulässig!
+    // placeholder for deleted elements, comparisons using == forbidden!
     public static final String TOMBSTONE = "✝";
 
     @Override
@@ -63,7 +63,7 @@ public final class StringHashSet implements SimpleSet<String> {
 
     @Override
     public boolean contains(String element) {
-        if (element != null) { // NPE ausschließen
+        if (element != null) { // exclude NPE
             int idealIdx = Math.abs(element.hashCode()) % table.length;
 
             for (int i = 0; i < table.length; i++) {
@@ -96,9 +96,6 @@ public final class StringHashSet implements SimpleSet<String> {
         }
             return false;
     }
-
-    // Diese Implementierung müssen Sie nicht ändern, sie ist nur
-    // zum leichteren Debuggen.
 
     @Override
     public String toString() {
